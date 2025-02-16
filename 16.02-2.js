@@ -93,3 +93,29 @@ async function fetchDescription(postId) {
 }
 
 fetchDescription(1)
+
+function* randomNumberGenerator(min, max) {
+    while (true) {
+        yield Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+}
+
+const randomGen = randomNumberGenerator(1, 100);
+console.log(randomGen.next().value); 
+console.log(randomGen.next().value); 
+
+
+//асихронный генератор
+const ids = [1, 2, 3];
+async function* fetchUsers(ids) {
+    for (let id of ids) {
+        await new Promise( resolve => setTimeout(resolve, 1000));  
+        yield { id, name: `User ${id}` };
+    }
+    
+}
+(async () => {
+    for await (let user of fetchUsers(ids)) {
+        console.log(user);
+    }
+})();
