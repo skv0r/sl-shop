@@ -1,0 +1,11 @@
+{
+    "name": "sl-shop",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "main.js",
+    "scripts": {
+      "start": "node 17.02.js"
+    },
+    "dependencies": {
+    }
+  }
