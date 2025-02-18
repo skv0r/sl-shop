@@ -44,3 +44,47 @@ console.log(task1)
 task1.changeCompletedStatus()
 console.log(task1.getCreateTime())
 
+class TaskManager {
+    constructor () {
+
+    }
+
+    addTask() {
+
+    }
+
+    removeTask() {
+
+    }
+
+    getTask() {
+
+    }
+}
+
+class TaskView {
+    displayTasks() {
+
+    }
+}
+
+
+class TaskController {
+    constructor(taskManager, taskView) {
+        this.TaskManager = taskManager;
+        this.TaskView = taskView;
+    }
+
+    addTask() {
+
+    }
+
+    removeTask() {
+
+    }
+
+    toggleTaskCompletion() {
+
+    }
+
+}
