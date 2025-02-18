@@ -37,13 +37,6 @@ class Task{
     }
 } 
 
-let task1 = new Task("wash face")
-console.log(task1)
-task1.changeCompletedStatus()
-console.log(task1)
-task1.changeCompletedStatus()
-console.log(task1.getCreateTime())
-
 class TaskManager {
     constructor (task) {
         this.tasks = [];
@@ -58,34 +51,58 @@ class TaskManager {
         this.tasks = this.tasks.filter(task => task.name !== taskName);
     }
 
-    getTask() {
-
+    getTasks() {
+        return this.tasks;
     }
 }
 
 class TaskView {
     displayTasks(tasks) {
-        return 
+        tasks.forEach(task => {
+            console.log(`Задача: ${task.name}, Описание: ${task.description}, Завершена: ${task.isCompleted}`);
+        });
     }
 }
 
 
 class TaskController {
     constructor(taskManager, taskView) {
-        this.TaskManager = taskManager;
-        this.TaskView = taskView;
+        this.taskManager = taskManager;
+        this.taskView = taskView;
     }
 
-    addTask() {
-
+    addTask(name, descr) {
+        this.taskManager.addTask(name, descr);
     }
 
-    removeTask() {
-
+    removeTask(name) {
+        this.taskManager.removeTask(name)
     }
 
-    toggleTaskCompletion() {
-
+    toggleTaskCompletion(name) {
+        const task = this.taskManager.getTasks().find(task => task.name == name);
+        if (task) {
+            task.changeCompletedStatus();
+            this.updateView();
+        }
     }
 
+    updateView() {
+        this.taskView.displayTasks(this.taskManager.getTasks())
+    }
 }
+
+
+const taskManager = new TaskManager();
+const taskView = new TaskView();
+const taskController = new TaskController(taskManager, taskView);
+
+// Добавление задач
+taskController.addTask("Сделать домашку", "Математика и физика");
+taskController.addTask("Купить продукты", "Молоко, хлеб, яйца");
+
+// Завершение задачи
+taskController.toggleTaskCompletion("Сделать домашку");
+
+// Удаление задачи
+taskController.removeTask("Купить продукты");
