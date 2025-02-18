@@ -45,16 +45,17 @@ task1.changeCompletedStatus()
 console.log(task1.getCreateTime())
 
 class TaskManager {
-    constructor () {
-
+    constructor (task) {
+        this.tasks = [];
     }
 
-    addTask() {
-
+    addTask(name, descr) {
+        const task = new Task(name, descr);
+        this.tasks.push(task);
     }
 
-    removeTask() {
-
+    removeTask(taskName) {
+        this.tasks = this.tasks.filter(task => task.name !== taskName);
     }
 
     getTask() {
@@ -63,8 +64,8 @@ class TaskManager {
 }
 
 class TaskView {
-    displayTasks() {
-
+    displayTasks(tasks) {
+        return 
     }
 }
 
