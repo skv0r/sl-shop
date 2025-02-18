@@ -18,3 +18,4 @@ function mediumAge(users) {
 }
 
 console.log(mediumAge(users));
+
