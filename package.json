@@ -4,8 +4,14 @@
     "type": "module",
     "main": "main.js",
     "scripts": {
-      "start": "node 17.02.js"
+        "start": "node typescript/22.02.tsx"
     },
     "dependencies": {
+        "@types/react-dom": "^19.0.4",
+        "react": "^19.0.0"
+    },
+    "devDependencies": {
+        "@types/react": "^19.0.10",
+        "typescript": "^5.7.3"
     }
-  }
+}
