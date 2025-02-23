@@ -45,3 +45,18 @@ const userPermissions: Record<UserRoles, boolean> = {
 
 //decorators skip
 
+/*
+1️⃣ Дженерики и ограничения (extends, keyof)
+📌 Задание:
+Создай функцию mergeObjects<T, U>, которая объединяет два объекта только если у них есть общие ключи.
+*/
+
+function mergeObjects<T extends object, U extends object> (obj1: T, obj2: U) {
+    const commonKeys: (keyof T & keyof U)[] = Object.keys(obj1).filter( key => key in obj2) as (keyof T & keyof U)[];
+    return commonKeys;
+}
+
+const obj1 = { name: "Alice", age: 25 };
+const obj2 = { age: 30, city: "New York" };
+const merged = mergeObjects(obj1, obj2);
+console.log(merged);
