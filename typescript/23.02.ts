@@ -1,3 +1,5 @@
+//   npx tsx typescript/23.02.ts
+
 interface User {
     readonly id: number;
     name: string;
@@ -53,7 +55,12 @@ const userPermissions: Record<UserRoles, boolean> = {
 
 function mergeObjects<T extends object, U extends object> (obj1: T, obj2: U) {
     const commonKeys: (keyof T & keyof U)[] = Object.keys(obj1).filter( key => key in obj2) as (keyof T & keyof U)[];
-    return commonKeys;
+    const merged: Partial<T & U> = {}
+    
+    for (let key of commonKeys) {
+        merged[key] = { ...obj1[key], ...obj2[key]}
+    }
+    return merged;
 }
 
 const obj1 = { name: "Alice", age: 25 };
