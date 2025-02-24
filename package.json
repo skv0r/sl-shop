@@ -4,7 +4,7 @@
     "type": "module",
     "main": "main.js",
     "scripts": {
-        "start": "npx tsx typescript/23.02.ts"
+        "start": "npx tsx typescript/async.ts"
     },
     "dependencies": {
         "@types/react-dom": "^19.0.4",
