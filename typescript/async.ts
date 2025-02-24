@@ -90,3 +90,49 @@ async function displayUserData(id: number) {
 }
 
 displayUserData(1)
+
+const cache: { [key: number] : string } = {};
+
+async function fetchDataWitCache(id: number) : Promise<string> {
+    return new Promise( (resolve, reject) => {
+        setTimeout( () => {
+           if (id in cache) {
+            resolve(`Данные из кэша для ID: ${cache[id]}`);
+           } else {
+            let userData = userDataList.find( data => data.id === id);
+            if (userData) {
+                cache[id] = userData.name;
+                resolve(`Данные для ID: ${userData.name}`)
+            } else {reject(`ERRRORRRRRRRR`)}
+           }
+        }, 4000)
+    })
+}
+
+async function displayDataWithCache(id: number) {
+    try {
+        const dataCached = await fetchDataWitCache(id);
+        console.log(dataCached)
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+displayDataWithCache(1);
+displayDataWithCache(1);
+
+function doubleAfterDelay(num: number): Promise<number> {
+    return new Promise( (resolve, reject) => {
+        setTimeout(() => {
+            resolve(num * 2)
+        }, 1000);
+    });
+}
+
+async function processItems(items: number[]): Promise<void> {
+    const promises = items.map(item => doubleAfterDelay(item));
+    const results = await Promise.all(promises);
+    console.log(results)
+}
+
+processItems([1, 2, 3, 4, 5]);
